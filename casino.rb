@@ -1,6 +1,6 @@
 require "pry"
 require "colorize"
-require_relative "high_low"  #! require pry and require colorize is not needed in each file, only casino.rb. also REMOVE require_relative "casino". It causes an annoying loop.
+# require_relative "high_low"  #! require pry and require colorize is not needed in each file, only casino.rb. also REMOVE require_relative "casino". It causes an annoying loop.
 require_relative "rps"      
 require_relative "slots"
 require_relative "war"

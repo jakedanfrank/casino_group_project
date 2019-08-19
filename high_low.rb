@@ -1,5 +1,7 @@
 require "pry"
 require "colorize"
+require "ascii"
+# require_relative "casino"
 
 # require_relative "casino"
 # module displayabe
@@ -52,46 +54,47 @@ class Deck
   end
 end
 
-
-# class Person 
-
-# end 
-
-# class Computer 
-
-# end 
-
-
-
-
-
-
-
 class High_low
-  def initialize
-    puts display_cards
+      def initialize
+        menu
+      end 
+
+      def initialize
+          @disp
+          #instance.method creates new instance
+      end
+
+      def menu 
+        puts "---- Welcome to High/Low ---"
+        puts "1) Shuffle Cards"
+        user = gets.to_i
+          if 
+            user = 1
+            puts "Shuffling..."
+            @display_cards
+          else puts "Invalid, try again"
+            menu
+        end
+      end  
+    
+    #   def dealer
+    #   @deck = Deck.new
+    # player_cards = @deck.shuffle_cards.last(2)
+    # dealer_cards = @deck.shuffle_cards.first(2)
+    #   end
   end 
 
-end 
- 
-  def dealer
- @deck = Deck.new
+  
+High_low.new
+
+
+
+High_low.new
+
+
+
+Deck.new
+
+@deck = Deck.new
  player_cards = @deck.shuffle_cards.last(2)
  dealer_cards = @deck.shuffle_cards.first(2)
-
-
-
-
-    end
-
- 
-   
-# High_low.new
-
-
-
-# Deck.new
-
-# @deck = Deck.new
-#  player_cards = @deck.shuffle_cards.last(2)
-#  dealer_cards = @deck.shuffle_cards.first(2)
