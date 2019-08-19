@@ -1,6 +1,5 @@
 require "pry"
 require "colorize"
-require_relative "casino"
 
 
 class Rock_Paper_Scissor

@@ -1,49 +1,146 @@
 require "pry"
 require "colorize"
-require_relative "rps"
+require_relative "high_low"  #! require pry and require colorize is not needed in each file, only casino.rb. also REMOVE require_relative "casino". It causes an annoying loop.
+require_relative "rps"      
+require_relative "slots"
+require_relative "war"
+require_relative "blackjack"
+require_relative "dice"
 
 class Casino
-
+    
     def initialize
+        welcome
         menu
+    end
+    
+    def welcome 
+        puts " 
+         __       __            __                                                      __                                                             
+        /  |  _  /  |          /  |                                                    /  |                                                            
+        $$ | / \\ $$ |  ______  $$ |  _______   ______   _____  ____    ______         _$$ |_     ______                                                
+        $$ |/$  \\$$ | /      \\ $$ | /       | /      \\ /     \\/    \\  /      \\       / $$   |   /      \\                                               
+        $$ /$$$  $$ |/$$$$$$  |$$ |/$$$$$$$/ /$$$$$$  |$$$$$$ $$$$  |/$$$$$$  |      $$$$$$/   /$$$$$$  |                                              
+        $$ $$/$$ $$ |$$    $$ |$$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$    $$ |        $$ | __ $$ |  $$ |                                              
+        $$$$/  $$$$ |$$$$$$$$/ $$ |$$ \\_____ $$ \\__$$ |$$ | $$ | $$ |$$$$$$$$/         $$ |/  |$$ \\__$$ |                                              
+        $$$/    $$$ |$$       |$$ |$$       |$$    $$/ $$ | $$ | $$ |$$       |        $$  $$/ $$    $$/                                               
+        $$/      $$/  $$$$$$$/ $$/  $$$$$$$/  $$$$$$/  $$/  $$/  $$/  $$$$$$$/          $$$$/   $$$$$$/                                                
+                                                                                                                                                       
+                                                                                                                                                       
+                                                                                                                                                       
+         _______   __                  __       __                                                 ______                       __                     
+        /       \\ /  |                /  \\     /  |                                               /      \\                     /  |                    
+        $$$$$$$  |$$/   ______        $$  \\   /$$ |  ______   _______    ______   __    __       /$$$$$$  |  ______    _______ $$/  _______    ______  
+        $$ |__$$ |/  | /      \\       $$$  \\ /$$$ | /      \\ /       \\  /      \\ /  |  /  |      $$ |  $$/  /      \\  /       |/  |/       \\  /      \\ 
+        $$    $$< $$ |/$$$$$$  |      $$$$  /$$$$ |/$$$$$$  |$$$$$$$  |/$$$$$$  |$$ |  $$ |      $$ |       $$$$$$  |/$$$$$$$/ $$ |$$$$$$$  |/$$$$$$  |
+        $$$$$$$  |$$ |$$ |  $$ |      $$ $$ $$/$$ |$$ |  $$ |$$ |  $$ |$$    $$ |$$ |  $$ |      $$ |   __  /    $$ |$$      \\ $$ |$$ |  $$ |$$ |  $$ |
+        $$ |__$$ |$$ |$$ \\__$$ |      $$ |$$$/ $$ |$$ \\__$$ |$$ |  $$ |$$$$$$$$/ $$ \\__$$ |      $$ \\__/  |/$$$$$$$ | $$$$$$  |$$ |$$ |  $$ |$$ \\__$$ |
+        $$    $$/ $$ |$$    $$ |      $$ | $/  $$ |$$    $$/ $$ |  $$ |$$       |$$    $$ |      $$    $$/ $$    $$ |/     $$/ $$ |$$ |  $$ |$$    $$/ 
+        $$$$$$$/  $$/  $$$$$$$ |      $$/      $$/  $$$$$$/  $$/   $$/  $$$$$$$/  $$$$$$$ |       $$$$$$/   $$$$$$$/ $$$$$$$/  $$/ $$/   $$/  $$$$$$/  
+                      /  \\__$$ |                                                 /  \\__$$ |                                                            
+                      $$    $$/                                                  $$    $$/                                                             
+                       $$$$$$/                                                    $$$$$$/                                                              "
+        puts "*" * 35
+        puts "Welcome to Big Money Casino"
+        puts "What is your name bruh?"
+        print "> "
+        name = gets.strip
+        User.new(name)
+        puts "How much do you have on you?"
+        amount = gets.strip.to_i
+        if amount > 0
+            puts "Welcome in..."
+            @walletoriginal = Walletoriginal.new(amount) #This code here creates a copy
+            @wallet = Wallet.new(@walletoriginal.oamount)
+            
+        else
+            puts "Get out of here you cheap, dirty rat!"
+            welcome
+        end
         
     end
-
+        
+        
+        
     def menu
-    puts "Welcome to Big Money Casino"
-    
+        
+        puts "What game would you like to begin? "
+        puts "1) Blackjack"
+        puts "2) Dice"
+        puts "3) Rock, Paper, Scissors"
+        puts "4) High Low"
+        puts "5) Slots"
+        puts "6) War"
+        puts "7) Exit"
+        choice = gets.strip.to_i
+        case choice 
+        when 1
+            BlackJack.new
+            sleep (2)
+            menu
+        when 2
+            #dice.new
+        when 3
+            #rps.new
+        when 4
+            #high_low.new
+        when 5
+            #slots.new
+        when 6
+            #war.new
+        when 7
+            puts "Come again soon!"
+            puts "You walked in with: " + @walletoriginal.oamount.to_s
+            puts "You are walking home with: " + @wallet.amount.to_s
+            
+            
+        else
+            puts "Invalid choice. Please try again"
+            menu 
+        end    
+    end
 
+end
     
-
+class Wallet
+    attr_accessor :amount
+    def initialize(amount)
+        @amount = amount
+        
     end
 end
 
+class Walletoriginal ###########!ignore this guy. This is just a clone of Wallet for menu selection 7
+    attr_accessor :oamount
+    def initialize(amount)
+        @oamount = amount
+        
+    end
+    
+end
+
+class User
+    attr_accessor :name
+    def initialize(name)
+        @name = name
+        
+    end
+    
+end
 
 Casino.new
 
 
-
-
-
-
-# ! Group Project Setup
-
-# ? Only one person needs to create the GitHub repo so choose someone to be the group leader and have them create a repo on GitHub.
-# todo The team lead will need to add the rest of the team as collaborators.
-# To do this, click on the settings tab and click on the Collaborators & Teams side menu.
-# Add the rest of the team by email or username. 
-# Everyone else on the team will need to clone the project to their local computers.
-# To do this, go the code (main screen) tab on the repo and click the green clone or download button on the right.
-# Make sure the title of new menu says Clone with SSH (if not click the link in the top corner that says use SSH) and grab the link in the text box.
-# On your local computer, make sure you are in the current directory you want the project to exist (dpl/week1) and type  git clone [SHH that you copied]
- 
-
-# Basic Objectives:
-
-# Start game player has a name and a wallet
-# Player can go to different games via menu
-# Slots
-# High / Low
+    
+    
+    
+    
+    #! Basic Objectives:
+    
+    # DONE Start game player has a name and a wallet
+    # Player can go to different games via menu
+    # Slots
+    # High / Low
 # Use classes to start the casino, bankroll, and each individual game
 # Player places bet and wins / loses (hint: rand)
 # The player should have a Wallet and the Wallet should be its own class with remove and add methods (OOP)
