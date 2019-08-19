@@ -1,3 +1,8 @@
+# require "pry"
+# require "colorize"
+# require "sounder"
+
+
 
 class BlackJack
   attr_accessor :amount
@@ -23,6 +28,17 @@ class BlackJack
 
     def bet(amount)
         puts "The table minimum is $5, and you can only hit once..."
+        sleep (1)
+          if amount < 5 
+          puts "Looks like you should go to a cheaper game, or cut your losses."
+          sleep (2)
+          else 
+            gamble(amount)
+          end
+
+        end
+      def gamble(amount)
+        sleep (1)
         puts "Want to test your luck, please place your bet..."
 
         print "> $ "
@@ -39,8 +55,14 @@ class BlackJack
             puts "Sorry, that's not enough to play this game.".light_blue
             sleep (1)
             broke(amount)
+
         end
-    end
+      end
+
+    # def casino
+    #   menu
+    # end
+
 
     def broke(amount)
         puts "Do you want to place another bet, or leave the table?"
@@ -66,8 +88,8 @@ class BlackJack
         @deck = Deck.new
         player_cards = @deck.shuffle_cards.last(2)
         @dealer_cards = @deck.shuffle_cards.first(2)
-
         
+
         puts "Your first card is a #{player_cards[0].rank} of #{player_cards[0].suit}"
         sleep (1)
         puts "Your second card is a #{player_cards[1].rank} of #{player_cards[1].suit}"
@@ -83,6 +105,7 @@ class BlackJack
         play(amount)
 
     end
+
 
     def play(amount)
     @hand_value = @card_one + @card_two 
