@@ -1,5 +1,4 @@
-require "pry"
-require "colorize"
+#########################################Fix money code. error in adding second round
 
 
 class Rock_Paper_Scissor
@@ -15,9 +14,9 @@ class Rock_Paper_Scissor
         print "> "
         wager = gets.to_i
         if wager > amount
-            puts "You can't wager more than you have"
-            game(amount)
-        else
+                puts "You can't wager more than you have"
+                game(amount)
+            else
 
         end
 
@@ -70,18 +69,18 @@ class Rock_Paper_Scissor
         elsif choice == 1 && number == 3
             puts "Rock beats Scissors"
             puts "You win"
-            someamount = wager + amount
+            @someamount = wager + amount
 
         elsif choice == 2 && number == 1
             puts "Paper beats Rock"
             puts "You win"
-            someamount = wager + amount
+            @someamount = wager + amount
 
         elsif choice == 2 && number == 3
             puts "Scissors beats Paper"
             puts "You lose"
-            someamount = amount - wager
-            if someamount == 0 
+            @someamount = amount - wager
+            if @someamount == 0 
                 puts "You broke scum. Get out of here!"
                 exit
             else
@@ -90,8 +89,8 @@ class Rock_Paper_Scissor
         elsif choice == 3 && number == 1
             puts "Rock beats Scissors"
             puts "You lose"
-            someamount = amount - wager
-            if someamount == 0 
+            @someamount = amount - wager
+            if @someamount == 0 
                 puts "You broke scum. Get out of here!"
                 exit
             else
@@ -100,22 +99,26 @@ class Rock_Paper_Scissor
         elsif choice == 3 && number == 2
             puts "Scissors beats Paper"
             puts "You win"
-            someamount = amount + wager
+            @someamount = amount + wager
 
         elsif choice == number
             puts "It's a tie"
-            someamount = amount
+            @someamount = amount
+            
         end
 
-        puts someamount.to_s
+        puts "You now have: " + @someamount.to_s
 
         puts "Do you want to play again? (y/n)"
+        print "> "
         continue = gets.strip.downcase
         if continue == "y"
-            game(someamount)
+            game(@someamount)
+            
+
         else
             "Next time!"
         end
-        @someamount = someamount
+    
     end
 end

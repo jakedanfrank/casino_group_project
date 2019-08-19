@@ -80,8 +80,8 @@ class Casino
             menu
         when 3
             newamount = Rock_Paper_Scissor.new(@wallet.amount)
+            binding.pry
             @wallet.amount = newamount.amount
-            puts @wallet.amount
             menu
         when 4
             #high_low.new(@wallet.amount)
