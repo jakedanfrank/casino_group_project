@@ -1,15 +1,15 @@
 require "pry"
 require "colorize"
-require "sounder"
+# require "sounder"
 
 
 
 class BlackJack
-  
+  attr_accessor :amount
  
   def initialize(amount)
-    @sound = Sounder::Sound.new "Sounds/cards.mp3"
-    @sound.play
+    # @sound = Sounder::Sound.new "Sounds/cards.mp3"
+    # @sound.play
     
     puts "
 
@@ -36,14 +36,15 @@ class BlackJack
 
         if @wager >= 5
             puts "Let's play!".red
-            @sound = Sounder::Sound.new "Sounds/chips.mp3"
-            @sound.play
+            # @sound = Sounder::Sound.new "Sounds/chips.mp3"
+            # @sound.play
             sleep (2)
             deal(amount)
         else
             puts "Sorry, that's not enough to play this game.".light_blue
             sleep (1)
             broke(amount)
+        end
     end
 
     def broke(amount)
@@ -54,8 +55,8 @@ class BlackJack
         @wager = gets.strip
 
             if @wager == "exit"
-                @sound = Sounder::Sound.new "Sounds/exit.mp3"
-            @sound.play
+                # @sound = Sounder::Sound.new "Sounds/exit.mp3"
+                # @sound.play
                 puts "Goodbye".cyan
                 
                 else 
@@ -122,8 +123,8 @@ class BlackJack
     def win(amount,wager)
         if @hand_value > 21
                 puts "Bummer, you busted..."
-                @sound = Sounder::Sound.new "Sounds/lose.mp3"
-                @sound.play
+                # @sound = Sounder::Sound.new "Sounds/lose.mp3"
+                # @sound.play
                 binding.pry
                 @someamount = amount - wager
                 binding.pry
@@ -131,8 +132,8 @@ class BlackJack
                 puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
             elsif @hand_value == 21
                 puts "BLACKJACK!!!"
-                @sound = Sounder::Sound.new "Sounds/winner.mp3"
-                @sound.play
+                # @sound = Sounder::Sound.new "Sounds/winner.mp3"
+                # @sound.play
                 @someamount = amount + wager
                 sleep (1)
                 puts "Let's play again!".red
@@ -141,15 +142,15 @@ class BlackJack
             elsif @hand_value <= 21 && @dealer_value <= 21
                 if @hand_value > @dealer_value
                     puts "Woohoo! You Won!"
-                    @sound = Sounder::Sound.new "Sounds/winner.mp3"
-                    @sound.play
+                    # @sound = Sounder::Sound.new "Sounds/winner.mp3"
+                    # @sound.play
                     @someamount = amount + wager
                     sleep (1)
                     puts "Let's play again!".red
                     puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
                 elsif @hand_value < @dealer_value
-                    @sound = Sounder::Sound.new "Sounds/lose.mp3"
-                    @sound.play
+                    # @sound = Sounder::Sound.new "Sounds/lose.mp3"
+                    # @sound.play
                     puts "Tough luck, maybe next time."
                     @someamount = amount - wager
                     sleep (1)
@@ -162,8 +163,8 @@ class BlackJack
                     puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
                 end
             elsif @hand_value > 21 && @dealer_value <= 21
-                @sound = Sounder::Sound.new "Sounds/lose.mp3"
-                @sound.play
+                # @sound = Sounder::Sound.new "Sounds/lose.mp3"
+                # @sound.play
                 puts "Tough luck, maybe next time." 
                 @someamount = amount - wager
                 sleep (1)
@@ -171,8 +172,8 @@ class BlackJack
                 puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
             elsif @hand_value <= 21 && @dealer_value > 21
                 puts "Woohoo! You Won!"
-                @sound = Sounder::Sound.new "Sounds/winner.mp3"
-                @sound.play
+                # @sound = Sounder::Sound.new "Sounds/winner.mp3"
+                # @sound.play
                 @someamount = amount + wager
                 sleep (1)
                 puts "Let's play again!".red
@@ -183,8 +184,8 @@ class BlackJack
         if decision == "play"
             bet(@someamount)
         elsif decision == "exit"
-            @sound = Sounder::Sound.new "Sounds/exit.mp3"
-            @sound.play
+            # @sound = Sounder::Sound.new "Sounds/exit.mp3"
+            # @sound.play
             puts "Goodbye.".cyan
             
         end
