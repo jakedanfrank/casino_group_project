@@ -28,6 +28,17 @@ class BlackJack
 
     def bet(amount)
         puts "The table minimum is $5, and you can only hit once..."
+        sleep (1)
+          if amount < 5 
+          puts "Looks like you should go to a cheaper game, or cut your losses."
+          sleep (2)
+          else 
+            gamble(amount)
+          end
+
+        end
+      def gamble(amount)
+        sleep (1)
         puts "Want to test your luck, please place your bet..."
 
         print "> $ "
@@ -44,8 +55,14 @@ class BlackJack
             puts "Sorry, that's not enough to play this game.".light_blue
             sleep (1)
             broke(amount)
+
         end
-    end
+      end
+
+    # def casino
+    #   menu
+    # end
+
 
     def broke(amount)
         puts "Do you want to place another bet, or leave the table?"
