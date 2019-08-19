@@ -41,7 +41,6 @@ class Casino
                       $$    $$/                                                  $$    $$/                                                             
                        $$$$$$/                                                    $$$$$$/                                                              "
         puts "*" * 35
-        puts "Welcome to Big Money Casino"
         puts "What is your name bruh?"
         print "> "
         name = gets.strip
@@ -52,12 +51,10 @@ class Casino
             puts "Welcome in..."
             @walletoriginal = Walletoriginal.new(amount) #This code here creates a copy
             @wallet = Wallet.new(@walletoriginal.oamount)
-            
         else
             puts "Get out of here you cheap, dirty rat!"
             welcome
         end
-        
     end
         
         
@@ -75,24 +72,37 @@ class Casino
         choice = gets.strip.to_i
         case choice 
         when 1
-            BlackJack.new
-            sleep (2)
+            newamount = BlackJack.new(@wallet.amount)
+            @wallet.amount = newamount.amount
             menu
         when 2
-            #dice.new
+            #dice.new(@wallet.amount)
+            menu
         when 3
-            #rps.new
+            newamount = Rock_Paper_Scissor.new(@wallet.amount)
+            binding.pry
+            @wallet.amount = newamount.amount
+            menu
         when 4
-            #high_low.new
+            #high_low.new(@wallet.amount)
+            menu
         when 5
-            #slots.new
+            #slots.new(@wallet.amount)
+            menu
         when 6
-            #war.new
+            #war.new(@wallet.amount)
+            menu
         when 7
-            puts "Come again soon!"
             puts "You walked in with: " + @walletoriginal.oamount.to_s
             puts "You are walking home with: " + @wallet.amount.to_s
-            
+            if @walletoriginal.oamount > @wallet.amount
+                puts "Better luck next time bucko!"
+            elsif @walletoriginal.oamount == @wallet.amount
+                puts "Eh, at least you broke even and had a fun time"
+            elsif @walletoriginal.oamount < @wallet.amount
+                puts "Good job!"
+            end
+            puts "Come again soon!"
             
         else
             puts "Invalid choice. Please try again"
