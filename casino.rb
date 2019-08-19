@@ -75,7 +75,9 @@ class Casino
         choice = gets.strip.to_i
         case choice 
         when 1
-            #blackjack.new
+            BlackJack.new
+            sleep (2)
+            menu
         when 2
             #dice.new
         when 3
