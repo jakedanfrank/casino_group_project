@@ -1,5 +1,6 @@
 require "pry"
 require "colorize"
+require "sounder"
 require_relative "high_low"  #! require pry and require colorize is not needed in each file, only casino.rb. also REMOVE require_relative "casino". It causes an annoying loop.
 require_relative "rps"      
 require_relative "slots"
@@ -80,13 +81,12 @@ class Casino
             menu
         when 3
             newamount = Rock_Paper_Scissor.new(@wallet.amount)
-            binding.pry
             @wallet.amount = newamount.amount
             menu
         when 4
             newamount = High_low.new(@wallet.amount)
             @wallet.amount = newamount.amount
-            menu#high_low.new(@wallet.amount)
+            menu
         when 5
             newamount = Slots.new(@wallet.amount)
             @wallet.amount = newamount.amount 

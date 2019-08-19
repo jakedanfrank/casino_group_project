@@ -1,5 +1,3 @@
-#########################################Fix money code. error in adding second round
-
 
 class Rock_Paper_Scissor
     attr_accessor :amount

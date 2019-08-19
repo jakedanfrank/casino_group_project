@@ -107,8 +107,7 @@ class Slots
       puts
       puts 
       sleep 4
-      exit!
-      bet 
+      exit 
     end
   end
   def bet(amount)

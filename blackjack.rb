@@ -1,8 +1,3 @@
-require "pry"
-require "colorize"
-require "sounder"
-
-
 
 class BlackJack
   attr_accessor :amount
@@ -71,8 +66,8 @@ class BlackJack
         @deck = Deck.new
         player_cards = @deck.shuffle_cards.last(2)
         @dealer_cards = @deck.shuffle_cards.first(2)
-        
 
+        
         puts "Your first card is a #{player_cards[0].rank} of #{player_cards[0].suit}"
         sleep (1)
         puts "Your second card is a #{player_cards[1].rank} of #{player_cards[1].suit}"
@@ -88,18 +83,6 @@ class BlackJack
         play(amount)
 
     end
-
-        puts "Your first card is a #{player_cards[0].rank} of #{player_cards[0].suit}"
-        sleep (1)
-        puts "Your second card is a #{player_cards[1].rank} of #{player_cards[1].suit}"
-        sleep (2)
-        puts "The dealer is showing a #{@dealer_cards[0].rank} of #{@dealer_cards[0].suit}"
-        sleep (1)  
-        
-        @card_one = player_cards[0].value.to_i
-        @card_two = player_cards[1].value.to_i
-        @dealer_one = @dealer_cards[0].value.to_i
-        @dealer_two = @dealer_cards[1].value.to_i
 
     def play(amount)
     @hand_value = @card_one + @card_two 

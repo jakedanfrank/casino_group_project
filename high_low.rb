@@ -1,6 +1,6 @@
 require "pry"
 require "colorize"
-require "ascii"
+# require "ascii"
 
 # require_relative "casino"
 # module displayabe
