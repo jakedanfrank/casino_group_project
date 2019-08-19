@@ -1,11 +1,16 @@
 require "pry"
 require "colorize"
+require "sounder"
 
 
 
 class BlackJack
   
+ 
   def initialize
+    @sound = Sounder::Sound.new "Sounds/cards.mp3"
+    @sound.play
+    
     puts "
 
 
@@ -25,12 +30,15 @@ class BlackJack
     puts "The table minimum is $5, and you can only hit once..."
     puts "Want to test your luck, please place your bet..."
     
+    
     print "> $ "
 
     player_bet = gets.to_i
 
       if player_bet >= 5
         puts "Let's play!".red
+        @sound = Sounder::Sound.new "Sounds/chips.mp3"
+        @sound.play
         sleep (2)
         deal
       else
@@ -43,13 +51,16 @@ class BlackJack
 
   def broke
     puts "Do you want to place another bet, or leave the table?"
-    sleep (2)
+    sleep (1)
     puts "Type 'exit' to leave, or 'bet' to place another bet!".cyan
     print "> "
     user_input = gets.strip
 
       if user_input == "exit"
+        @sound = Sounder::Sound.new "Sounds/exit.mp3"
+        @sound.play
         puts "Goodbye".cyan
+        sleep (2)
         
       else 
         bet
@@ -120,6 +131,8 @@ def win
       puts "Let's play again!".red
       puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
     elsif @hand_value == 21
+      @sound = Sounder::Sound.new "Sounds/winner.mp3"
+      @sound.play
       puts "BLACKJACK!!!"
       sleep (1)
       puts "Let's play again!".red
@@ -128,27 +141,37 @@ def win
 
     if @hand_value <= 21 && @dealer_value <= 21
       if @hand_value > @dealer_value
+        @sound = Sounder::Sound.new "Sounds/winner.mp3"
+        @sound.play
         puts "Woohoo! You Won!"
         sleep (1)
         puts "Let's play again!".red
         puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
       elsif @hand_value < @dealer_value
+        @sound = Sounder::Sound.new "Sounds/lose.mp3"
+        @sound.play
         puts "Tough luck, maybe next time."
         sleep (1)
         puts "Let's play again!".red
         puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
       else
+        @sound = Sounder::Sound.new "Sounds/slip.mp3"
+        @sound.play
         puts "It's a draw."
         sleep (1)
         puts "Let's play again!".red
         puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
       end
     elsif @hand_value > 21 && @dealer_value <= 21
+      @sound = Sounder::Sound.new "Sounds/lose.mp3"
+      @sound.play
       puts "Tough luck, maybe next time." 
       sleep (1)
       puts "Let's play again!".red
       puts "Enter 'play' to continue or 'exit' to head back to the casino.".cyan
     elsif @hand_value <= 21 && @dealer_value > 21
+      @sound = Sounder::Sound.new "Sounds/winner.mp3"
+      @sound.play
       puts "Woohoo! You Won!"
       sleep (1)
       puts "Let's play again!".red
@@ -159,7 +182,10 @@ def win
       if decision == "play"
         bet
       elsif decision == "exit"
+        @sound = Sounder::Sound.new "Sounds/exit.mp3"
+        @sound.play
         puts "Goodbye.".cyan
+        sleep (2)
         
       end
    
