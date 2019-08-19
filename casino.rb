@@ -1,6 +1,6 @@
 require "pry"
 require "colorize"
-# require_relative "high_low"  #! require pry and require colorize is not needed in each file, only casino.rb. also REMOVE require_relative "casino". It causes an annoying loop.
+require_relative "high_low"  #! require pry and require colorize is not needed in each file, only casino.rb. also REMOVE require_relative "casino". It causes an annoying loop.
 require_relative "rps"      
 require_relative "slots"
 require_relative "war"
@@ -84,9 +84,10 @@ class Casino
             @wallet.amount = newamount.amount
             menu
         when 4
-            #high_low.new(@wallet.amount)
-            menu
-        when 5
+            newamount = High_low.new(@wallet.amount)
+            @wallet.amount = newamount.amount
+            menu#high_low.new(@wallet.amount)
+         when 5
             #slots.new(@wallet.amount)
             menu
         when 6
