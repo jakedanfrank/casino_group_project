@@ -1,6 +1,6 @@
 require "pry"
 require "colorize"
-# require "sounder"
+require "sounder"
 
 
 
@@ -64,7 +64,9 @@ class BlackJack
             end
     end
 
-  
+    # def casino
+    #   menu
+    # end
 
     def deal(amount)
 
@@ -89,6 +91,17 @@ class BlackJack
 
     end
 
+        puts "Your first card is a #{player_cards[0].rank} of #{player_cards[0].suit}"
+        sleep (1)
+        puts "Your second card is a #{player_cards[1].rank} of #{player_cards[1].suit}"
+        sleep (2)
+        puts "The dealer is showing a #{@dealer_cards[0].rank} of #{@dealer_cards[0].suit}"
+        sleep (1)  
+        
+        @card_one = player_cards[0].value.to_i
+        @card_two = player_cards[1].value.to_i
+        @dealer_one = @dealer_cards[0].value.to_i
+        @dealer_two = @dealer_cards[1].value.to_i
 
     def play(amount)
     @hand_value = @card_one + @card_two 
